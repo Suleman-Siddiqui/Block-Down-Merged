@@ -67,11 +67,6 @@ namespace GamePlay
       transform1.position = position;
     }
     
-    
-    
-    
-    
   }
-
 
 }

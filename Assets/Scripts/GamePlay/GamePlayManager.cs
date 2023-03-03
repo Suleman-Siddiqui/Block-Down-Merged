@@ -25,7 +25,7 @@ namespace GamePlay
                 Destroy(GM_Instance);
         }
 
-        void Awake()
+        private void Awake()
         {
             CheckInstance();
             AppController.IsClickSeriveOn = true;
@@ -63,11 +63,7 @@ namespace GamePlay
 
         public bool CheckedTileHolder_ChildGreaterThan3()
         {
-            if(newTileSpawnHolder.transform.childCount>3)
-            {
-                return true;
-            }
-            return false;
+            return newTileSpawnHolder.transform.childCount>3;
         }
 
         public void SetNewTile_NumberAfterMerged(GameObject DestinationCardObj, GameObject MergedTile)

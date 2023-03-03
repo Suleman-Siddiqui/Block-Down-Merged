@@ -1,11 +1,13 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace GamePlay
 {
     public class GridTile : MonoBehaviour
     {
-        [SerializeField] private NeightFound_GridTile NeightFoundGridTile;
+        [SerializeField] private NeigbourFoundGridTile neighbourFound_GT;
+     
         /*
         void OnMouseDown()
         {
@@ -50,21 +52,28 @@ namespace GamePlay
 
         }
 */
-
-      
         
-
         private bool CheckMyBottomFil()
-       {
-           return NeightFoundGridTile.bottomNeighbour != null && NeightFoundGridTile.bottomNeighbour.transform.childCount == 0;
-       }
-       
-       // Check MergedCard ::  MOVE TO FACTHED POS Func 
+        {
+           return neighbourFound_GT.bottomNeighbour != null && neighbourFound_GT.bottomNeighbour.transform.childCount == 0;
+        }
+
+        public GridTile GetNextBottom_GT()
+        {
+            return CheckMyBottomFil() ? neighbourFound_GT.bottomNeighbour : null;
+        }
+        
+        private bool IsFoundBottomTileNumberSame()
+        {
+            return CheckMyBottomFil() && IsbottomTileNumberSame(neighbourFound_GT.bottomNeighbour.transform.gameObject);
+        }
+        
+        // Check MergedCard ::  MOVE TO FACTHED POS Func 
         public bool CheckBottomNeighbout_ToGetFatchedCard()
         {
             bool IsFound = false;
-            if (!IsFound_Bottom()) return IsFound;
-            MoveToFatchedCardFunbottomPos( NeightFoundGridTile.bottomNeighbour.transform.GetChild(0).gameObject,transform.GetChild(0).gameObject);
+            if (!IsFoundBottomTileNumberSame()) return IsFound;
+            MoveToFatchedCardFunbottomPos( neighbourFound_GT.bottomNeighbour.transform.GetChild(0).gameObject,transform.GetChild(0).gameObject);
 
             IsFound = true;
             return IsFound;
@@ -72,21 +81,16 @@ namespace GamePlay
     
         public bool CheckTopNeigibourTileNull()
         {
-            if (NeightFoundGridTile.topNeighbour != null)
+            if (neighbourFound_GT.topNeighbour != null)
             {
-                if (!IsChildFound(NeightFoundGridTile.topNeighbour.transform.gameObject))
+                if (!IsChildFound(neighbourFound_GT.topNeighbour.transform.gameObject))
                 {
                     return true;
                 }
             }
             return false;
         }
-
-        private bool IsFound_Bottom()
-        {
-            return CheckMyBottomFil() && IsbottomTileNumberSame(NeightFoundGridTile.bottomNeighbour.transform.gameObject);
-        }
-
+        
         bool IsChildFound(GameObject Obj)
         {
             if (Obj.transform.childCount > 0)

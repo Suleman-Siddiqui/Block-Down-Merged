@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using GamePlay;
 using UnityEngine;
+using UnityEngine.Serialization;
+using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 public class InitializerScripts : MonoBehaviour
 {
@@ -11,22 +13,18 @@ public class InitializerScripts : MonoBehaviour
     public Color[] TileColorNumberWise;
     [Header("Grid ITems")]
     public GameObject gridMainParent;
-    public GameObject[] gridtilePrefabsObjArry;
-    public float gridRowXOffset, gridColorumYOffset;
+    public GameObject gridTilePrefab;
+    public float gridRowXOffset;
+    public float gridColoumYOffset;
     public int Row,Colom;
     public float gridTParentTileScale;
-    [Header("Player Tile ITems")]
-    public GameObject NewTileHolderParent;
     public GameObject playerTileObject;
-    public Vector3[] playerTileSpawninglocalPosArr;
-    public Vector3[] playerTileScaleArry;
-
-
+   
     private void Start()
     {
-
-        GenerateGrid(gridtilePrefabsObjArry[0], Row, Colom, gridRowXOffset, gridColorumYOffset);
-        SpawnPlayerTile();
+        GenerateGrid(gridTilePrefab, Row, Colom, gridRowXOffset, gridColoumYOffset);
+      //  SpawnPlayerTile();
+        Invoke("SpawnPlayerTile",1f);
     }
 
      //Grid Init
@@ -46,7 +44,7 @@ public class InitializerScripts : MonoBehaviour
                 currentTile.transform.name = nameconuter.ToString();
                 currentTile.GetComponent<SpriteRenderer>().enabled = true;
                 xOffset += xIncrementalValue;
-                currentTile.GetComponent<NeightFound_GridTile>().CheckNeighbour(nameconuter, Pr_numOfRow, Pr_numOfCol);
+                currentTile.GetComponent<NeigbourFoundGridTile>().CheckNeighbour(nameconuter, Pr_numOfRow, Pr_numOfCol);
                 nameconuter++;
 
             }
@@ -57,51 +55,46 @@ public class InitializerScripts : MonoBehaviour
             new Vector3(gridTParentTileScale, gridTParentTileScale, gridTParentTileScale);
     }
 
-    #region Init Player Tiles
-
-    public  void SpawnPlayerTile()
+    private  void SpawnPlayerTile()
     {
-        GameObject TileObj = Instantiate(playerTileObject) as GameObject;
-        TileObj.transform.SetParent(NewTileHolderParent.transform);
-        TileObj.transform.localPosition = playerTileSpawninglocalPosArr[TileObj.transform.GetSiblingIndex()];
-        int r = Random.Range(0, 4);
+        var TileObj = Instantiate(playerTileObject) ;
+      
+        var gridTileMyParent = GetNewTileStartingParen();
+        TileObj.transform.SetParent(gridTileMyParent.transform);
+        TileObj.transform.localPosition = Vector3.zero;
+        TileObj.transform.localScale = Vector3.one;
+        
+        // number property
+        var r = Random.Range(0, 2);
         TileObj.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = GirdTileNumber[r].ToString();
         TileObj.GetComponent<SpriteRenderer>().color = TileColorNumberWise[r];
-        TileObj.transform.localScale = playerTileScaleArry[TileObj.transform.GetSiblingIndex()];
-        TileObj.GetComponent<TileScripts>().TileNumber = GirdTileNumber[r];
+        var tileScript = TileObj.GetComponent<TileScripts>();
+        tileScript.TileNumber=GirdTileNumber[r];
+        tileScript.SetCurrentGridTile(gridTileMyParent);
+        tileScript.MoveDown();
     }
 
-    #endregion
-
+    private GridTile GetNewTileStartingParen()
+    {
+        return gridMainParent.transform.GetChild(Colom*Row- ((int)Colom/ 2)-1).GetComponent<GridTile>();
+    }
 
     public Color GetTileColorAtNumberWise(int tileNumber)
     {
-        switch(tileNumber)
+        return tileNumber switch
         {
-            case 2:
-                return TileColorNumberWise[0];
-            case 4:
-                return TileColorNumberWise[1];
-            case 8:
-                return TileColorNumberWise[2];
-            case 16:
-                return TileColorNumberWise[3];
-            case 32:
-                return TileColorNumberWise[4];
-            case 64:
-                return TileColorNumberWise[5];
-            case 128:
-                return TileColorNumberWise[6];
-            case 256:
-                return TileColorNumberWise[7];
-            case 512:
-                return TileColorNumberWise[8];
-            case 1024:
-                return TileColorNumberWise[9];
-            case 2048:
-                return TileColorNumberWise[10];
-        }
-
-        return new Color();
+            2 => TileColorNumberWise[0],
+            4 => TileColorNumberWise[1],
+            8 => TileColorNumberWise[2],
+            16 => TileColorNumberWise[3],
+            32 => TileColorNumberWise[4],
+            64 => TileColorNumberWise[5],
+            128 => TileColorNumberWise[6],
+            256 => TileColorNumberWise[7],
+            512 => TileColorNumberWise[8],
+            1024 => TileColorNumberWise[9],
+            2048 => TileColorNumberWise[10],
+            _ => new Color()
+        };
     }
 }

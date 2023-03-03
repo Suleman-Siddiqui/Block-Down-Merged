@@ -223,7 +223,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TileNumber: 0
-  moveToUpPos: {x: 0, y: 4, z: 0}
+  downSpeed: 1
   FatchedCardPosObj: {fileID: 0}
 --- !u!114 &4489525414841285667
 MonoBehaviour:
@@ -237,7 +237,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 936d624820e11644a9f3d09593d4f495, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swipeThreshold: 0.5
   swipeXOffset: 1.14
   xClamplimit: 3.42
 --- !u!1 &1727472628359921476

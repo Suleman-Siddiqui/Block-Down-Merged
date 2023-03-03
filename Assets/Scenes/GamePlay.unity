@@ -1256,8 +1256,8 @@ MonoBehaviour:
   - {r: 1, g: 0.8117648, b: 0.16078432, a: 1}
   - {r: 0.72156864, g: 0.69411767, b: 0.22352943, a: 1}
   gridMainParent: {fileID: 2002432828}
-  gridtilePrefabsObjArry:
-  - {fileID: 8097404013636529415, guid: fbab99508c391874e9f2081e91fc8055, type: 3}
+  gridTilePrefab: {fileID: 8097404013636529415, guid: fbab99508c391874e9f2081e91fc8055,
+    type: 3}
   gridRowXOffset: 1.1
   gridColorumYOffset: 1.1
   Row: 9
@@ -1266,14 +1266,6 @@ MonoBehaviour:
   NewTileHolderParent: {fileID: 1923693069}
   playerTileObject: {fileID: 1727472628206567305, guid: af93a3ba9c2f36246b1285a79cf89282,
     type: 3}
-  playerTileSpawninglocalPosArr:
-  - {x: 0, y: 0, z: 0}
-  - {x: -1.4, y: 0, z: 0}
-  - {x: -2.56, y: 0, z: 0}
-  playerTileScaleArry:
-  - {x: 1, y: 1, z: 1}
-  - {x: 0.7, y: 0.7, z: 0.7}
-  - {x: 0, y: 0, z: 0}
 --- !u!4 &921146627
 Transform:
   m_ObjectHideFlags: 0

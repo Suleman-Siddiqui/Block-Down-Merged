@@ -1,4 +1,5 @@
 ﻿using System;
+using DG.Tweening;
 using UnityEngine;
 
 namespace GamePlay
@@ -6,32 +7,25 @@ namespace GamePlay
     public class TileScripts : MonoBehaviour
     {
         public int TileNumber;
-        public Vector3 moveToUpPos;
-
-        private bool _moveDownFound;
-        private bool _foundOnGrid;
-        private void Update()
+        [SerializeField] private float downSpeed;
+        private GridTile currentGridTile;
+        
+        public void MoveDown()
         {
-            if (_moveDownFound)
+            var bottom_GT = currentGridTile.GetNextBottom_GT();
+            if(bottom_GT==null) return;
+            print("move down");
+            transform.DOMove(bottom_GT.transform.position, downSpeed).OnComplete(()=>
             {
-                
-            }
-            
+                SetCurrentGridTile(bottom_GT);
+                MoveDown();
+            });
         }
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+
+        public void SetCurrentGridTile(GridTile gridTile)
+        {
+            currentGridTile = gridTile;
+        }
         
         
         
@@ -47,14 +41,6 @@ namespace GamePlay
             }
         }
         
-        public void MoveToNextGridPost()
-        {
-            GetComponent<SpriteRenderer>().sortingOrder = 2;
-            iTween.ScaleTo(gameObject, iTween.Hash("x", 1.3F, "y", 1.3f, "speed", 10F));
-            iTween.MoveTo(gameObject, iTween.Hash("x",transform.parent.position.x ,"speed", 10,"easeType", "easeInOutQuad","oncomplete", "MovtToParentTilePos"));
-
-        }
-
         void MovtToParentTilePos()
         {
             iTween.ScaleTo(gameObject, iTween.Hash("x", 1, "y", 1f, "speed", 20f));

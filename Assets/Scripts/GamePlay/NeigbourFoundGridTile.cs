@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace GamePlay
 {
-    public class NeightFound_GridTile : MonoBehaviour
+    public class NeigbourFoundGridTile : MonoBehaviour
     {
      //++++++++++++ NEIGHBOUR FINDING MODULE  +++++++++++++++ 
         // important dont delete 

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8097404013636529414}
   - component: {fileID: 8097404013636529417}
   - component: {fileID: 8097404013636529416}
+  - component: {fileID: 3322601440198808835}
   m_Layer: 0
   m_Name: GTile
   m_TagString: Untagged
@@ -95,6 +96,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e34341473e4666c42a07dee10150aa10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  neighbourFound_GT: {fileID: 3322601440198808835}
+--- !u!114 &3322601440198808835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8097404013636529415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 752a9762b7be26040b8cfeb0626b8f19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   left: -1
