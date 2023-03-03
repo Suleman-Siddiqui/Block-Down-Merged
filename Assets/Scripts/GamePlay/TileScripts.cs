@@ -5,50 +5,48 @@ namespace GamePlay
 {
     public class TileScripts : MonoBehaviour
     {
-
         public int TileNumber;
         public Vector3 moveToUpPos;
 
-
+        private bool _moveDownFound;
+        private bool _foundOnGrid;
         private void Update()
         {
-            if(!Input.GetMouseButtonDown(0))return;
+            if (_moveDownFound)
+            {
+                
+            }
             
         }
-
-
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         private void OnMouseDown()
         {
-            if(transform.parent.GetComponent<GridTileScripts>() && AppController.IsClickSeriveOn)
+            if(transform.parent.GetComponent<GridTile>() && AppController.IsClickSeriveOn)
             {
-                GridTileScripts gdTileScript = transform.parent.GetComponent<GridTileScripts>();
-                if (gdTileScript.CheckTopNeigibourTileNull())
+                GridTile gdTile = transform.parent.GetComponent<GridTile>();
+                if (gdTile.CheckTopNeigibourTileNull())
                 {
                     GamePlayManager.GM_Instance.MoveClickTileToTopUpPos(this.gameObject);
                 }
             }
         }
-
-        public void MoveToFirstPostion(Vector3 firstPos)
-        {
-       
-            iTween.ScaleTo(gameObject, iTween.Hash("x", 1, "y", 1f, "speed", 5f));
-            iTween.MoveTo(gameObject, iTween.Hash("x", firstPos.x, "y",firstPos.y, "islocal",true,"speed", 5f, "easeType", "easeInOutQuad"));
-        }
-
-        public void MoveToTopFirstPos(Vector3 TopUpPos)
-        {
-            iTween.MoveTo(gameObject, iTween.Hash("x",0,"y", TopUpPos.y, "time", 0.3f,"easeType", "easeInOutQuad"));
-        }
-
-        public void MoveToTopFirstPoslocal(Vector3 TopUpPos)
-        {
-            iTween.MoveTo(gameObject, iTween.Hash("x", 0, "y", TopUpPos.y,"islocal",true, "time", 0.3f, "easeType", "easeInOutQuad"));
-        }
-       
         
-        //===================================================================
-
         public void MoveToNextGridPost()
         {
             GetComponent<SpriteRenderer>().sortingOrder = 2;
@@ -66,7 +64,7 @@ namespace GamePlay
 
         void CheckMyParentToSelf_FatchedFound()
         {
-            bool IsfoundMerged = transform.parent.GetComponent<GridTileScripts>().CheckBottomNeighbout_ToGetFatchedCard();
+            bool IsfoundMerged = transform.parent.GetComponent<GridTile>().CheckBottomNeighbout_ToGetFatchedCard();
             if (!IsfoundMerged)
             {
                 GamePlayManager.GM_Instance.GameOverChecked();
@@ -87,18 +85,9 @@ namespace GamePlay
         {
             GamePlayManager.GM_Instance.SetNewTile_NumberAfterMerged(FatchedCardPosObj, this.gameObject);
         }
-
-
-        public void ScaleResetEffect()
-        {
-            iTween.ScaleTo(gameObject, iTween.Hash("x", 1, "y", 1f, "time", 0.2f));
-        }
-
-        public void SetScaleValue(Vector3 ScaleValue)
-        {
-            iTween.ScaleTo(gameObject, iTween.Hash("x", ScaleValue.x, "y", ScaleValue.y, "time", 0.5f));
-        }
-
+        
+        
+        
 
     }
 }

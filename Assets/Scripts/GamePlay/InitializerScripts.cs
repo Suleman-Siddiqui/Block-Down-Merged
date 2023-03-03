@@ -46,7 +46,7 @@ public class InitializerScripts : MonoBehaviour
                 currentTile.transform.name = nameconuter.ToString();
                 currentTile.GetComponent<SpriteRenderer>().enabled = true;
                 xOffset += xIncrementalValue;
-                currentTile.GetComponent<GridTileScripts>().FindNeihbourForMe(nameconuter, Pr_numOfRow, Pr_numOfCol);
+                currentTile.GetComponent<NeightFound_GridTile>().CheckNeighbour(nameconuter, Pr_numOfRow, Pr_numOfCol);
                 nameconuter++;
 
             }

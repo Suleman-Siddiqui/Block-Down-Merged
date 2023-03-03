@@ -57,8 +57,8 @@ namespace GamePlay
         public void MoveClickTileToTopUpPos(GameObject clickTileObj)
         {
             clickTileObj.transform.SetParent(newTileSpawnHolder.transform);
-            clickTileObj.GetComponent<TileScripts>().MoveToTopFirstPos(clickTileObj.GetComponent<TileScripts>().moveToUpPos);
-            newTileSpawnHolder.transform.GetChild(0).GetComponent<TileScripts>().MoveToTopFirstPoslocal(new Vector3(0, 0.5f, 0));
+          //  clickTileObj.GetComponent<TileScripts>().MoveToTopFirstPos(clickTileObj.GetComponent<TileScripts>().moveToUpPos);
+           // newTileSpawnHolder.transform.GetChild(0).GetComponent<TileScripts>().MoveToTopFirstPoslocal(new Vector3(0, 0.5f, 0));
         }
 
         public bool CheckedTileHolder_ChildGreaterThan3()
@@ -81,7 +81,7 @@ namespace GamePlay
 
             ScoreCountFun(mergedTileNumber);
             // again check to merged 
-            bool isFound =  DestinationCardObj.transform.parent.GetComponent<GridTileScripts>().CheckBottomNeighbout_ToGetFatchedCard();
+            bool isFound =  DestinationCardObj.transform.parent.GetComponent<GridTile>().CheckBottomNeighbout_ToGetFatchedCard();
             if(!isFound)
             {
                 GamePlayManager.GM_Instance.GameOverChecked();
