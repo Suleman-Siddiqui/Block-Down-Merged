@@ -823,7 +823,7 @@ Transform:
   m_Children:
   - {fileID: 1203132461}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &623740168
 GameObject:
@@ -1259,12 +1259,11 @@ MonoBehaviour:
   gridTilePrefab: {fileID: 8097404013636529415, guid: fbab99508c391874e9f2081e91fc8055,
     type: 3}
   gridRowXOffset: 1.1
-  gridColorumYOffset: 1.1
+  gridColoumYOffset: 1.1
   Row: 9
   Colom: 7
   gridTParentTileScale: 0.75
-  NewTileHolderParent: {fileID: 1923693069}
-  playerTileObject: {fileID: 1727472628206567305, guid: af93a3ba9c2f36246b1285a79cf89282,
+  playerTileObject: {fileID: 1727472628206567304, guid: af93a3ba9c2f36246b1285a79cf89282,
     type: 3}
 --- !u!4 &921146627
 Transform:
@@ -2210,7 +2209,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1923693069
 GameObject:
@@ -2668,7 +2667,7 @@ RectTransform:
   - {fileID: 1859971057}
   - {fileID: 1339565952}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

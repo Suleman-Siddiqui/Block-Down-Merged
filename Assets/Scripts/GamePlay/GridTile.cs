@@ -53,6 +53,8 @@ namespace GamePlay
         }
 */
         
+        
+        
         private bool CheckMyBottomFil()
         {
            return neighbourFound_GT.bottomNeighbour != null && neighbourFound_GT.bottomNeighbour.transform.childCount == 0;
@@ -61,6 +63,16 @@ namespace GamePlay
         public GridTile GetNextBottom_GT()
         {
             return CheckMyBottomFil() ? neighbourFound_GT.bottomNeighbour : null;
+        }
+
+        public GridTile GetRight_GT()
+        {
+            return neighbourFound_GT.rightNeighbour != null && neighbourFound_GT.rightNeighbour.transform.childCount == 0 ? neighbourFound_GT.rightNeighbour : null;
+        }
+       
+        public GridTile GetLeft_GT()
+        {
+            return neighbourFound_GT.leftNeighbour != null && neighbourFound_GT.leftNeighbour.transform.childCount == 0 ? neighbourFound_GT.leftNeighbour : null;
         }
         
         private bool IsFoundBottomTileNumberSame()

@@ -108,7 +108,6 @@ GameObject:
   - component: {fileID: 1727472628206567306}
   - component: {fileID: 1727472628206567307}
   - component: {fileID: 1727472628206567304}
-  - component: {fileID: 4489525414841285667}
   m_Layer: 0
   m_Name: Tile
   m_TagString: Untagged
@@ -223,22 +222,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TileNumber: 0
-  downSpeed: 1
+  TileNumberText: {fileID: 1727472627502691497}
+  SpriteRenderer: {fileID: 1727472628206567306}
+  downSpeed: 0.1
+  rightSpeed: 0.2
   FatchedCardPosObj: {fileID: 0}
---- !u!114 &4489525414841285667
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1727472628206567305}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 936d624820e11644a9f3d09593d4f495, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  swipeXOffset: 1.14
-  xClamplimit: 3.42
 --- !u!1 &1727472628359921476
 GameObject:
   m_ObjectHideFlags: 0
