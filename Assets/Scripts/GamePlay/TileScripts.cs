@@ -20,7 +20,7 @@ namespace GamePlay
         private const float MAX_SWIPE_TIME = 0.5f; 
         // Factor of the screen width that we consider a swipe
         // 0.17 works well for portrait mode 16:9 phone
-        private const float MIN_SWIPE_DISTANCE = .05f;
+        private const float MIN_SWIPE_DISTANCE = .08f;
         private Vector2 _startPos;
         private float _startTime;
         private bool IsSwipeFound;
@@ -57,13 +57,15 @@ namespace GamePlay
             if (Input.GetMouseButtonUp(0) && isMousedown)
             {
                 isMousedown = false;
+                MoveDown();
             }
             if (Input.GetMouseButtonDown(0))
             {
                 mouseTouchPosPrevious = Input.mousePosition;
                 _startPos = new Vector2(mouseTouchPosPrevious.x/(float)Screen.width, mouseTouchPosPrevious.y/(float)Screen.width);
-                _startTime = Time.time;
+               // _startTime = Time.time;
                 isMousedown = true;
+               
             }
 
             if (!Input.GetMouseButton(0) || !isMousedown) return;
@@ -71,41 +73,43 @@ namespace GamePlay
             var endPos = new Vector2(mouseTouchUpPos.x/(float)Screen.width, mouseTouchUpPos.y/(float)Screen.width);
             var swipe = new Vector2(endPos.x - _startPos.x, endPos.y - _startPos.y);
             SwipeShift(swipe);
+          
 
         }
 
         private int swipeCount = 0;
         private void SwipeShift(Vector2 swipe)
         {
-           
+           print(swipe.magnitude);
             if (swipe.magnitude < MIN_SWIPE_DISTANCE) // Too short swipe
                 return;
-            print(swipe.magnitude);
-            if(swipeCount>0) return;;
-            if (Mathf.Abs (swipe.x) > Mathf.Abs (swipe.y)) 
-            {
-                // Horizontal swipe
-                if (swipe.x > 0) {
-                    MoveRight();
+           if (Time.time > _startTime)
+            {  
+                if (Mathf.Abs (swipe.x) > Mathf.Abs (swipe.y)) 
+                {
+                    // Horizontal swipe
+                    if (swipe.x > 0) 
+                    {
+                        MoveRight();
+                    }
+                    else 
+                    {
+                        MoveLeft();
+                    }
                 }
-                else {
-                    MoveLeft();
+                else { // Vertical swipe
+                    if (swipe.y > 0)
+                    {
+                        print("Swipe Up ");
+                    }
+                    else {
+                        print("Swipe down ");
+                    }
                 }
+                _startPos =new Vector2(swipe.x+MIN_SWIPE_DISTANCE,swipe.y+MIN_SWIPE_DISTANCE);
+                swipeCount = 0;
+                _startTime = Time.time +.1f;
             }
-            else { // Vertical swipe
-                if (swipe.y > 0) {
-                    print("Swipe Up ");
-                }
-                else {
-                    print("Swipe down ");
-                }
-            }
-
-            mouseTouchPosPrevious =new Vector2(swipe.x+MIN_SWIPE_DISTANCE,swipe.y+MIN_SWIPE_DISTANCE);
-            if (!(Time.time > _startTime + MAX_SWIPE_TIME)) return;
-             _startTime = Time.time + MAX_SWIPE_TIME;
-            swipeCount = 0;
-
         }
        
         public void MoveDown()
@@ -126,19 +130,17 @@ namespace GamePlay
             var leftGt = currentGridTile.GetLeft_GT();
             if(leftGt==null) return;
             DOTween.KillAll();
-            swipeCount = 1;
             SetCurrentGridTile(leftGt);
-            transform.position = leftGt.transform.position; //DOMove(leftGt.transform.position, rightSpeed);
+            transform.DOMoveX(leftGt.transform.position.x, rightSpeed);
         }
 
         private void MoveRight()
         {
             var rightGt = currentGridTile.GetRight_GT();
             if(rightGt==null) return;
-            swipeCount = 1;
-            SetCurrentGridTile(rightGt);
             DOTween.KillAll();
-            transform.position = rightGt.transform.position; // DOMove(rightGt.transform.position, rightSpeed);
+            SetCurrentGridTile(rightGt);
+            transform.DOMoveX(rightGt.transform.position.x, rightSpeed);
         }
         
         public void SetCurrentGridTile(GridTile gridTile)

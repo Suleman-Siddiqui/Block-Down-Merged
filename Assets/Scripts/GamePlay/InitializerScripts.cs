@@ -66,7 +66,7 @@ namespace GamePlay
             tileScript.SetLocalScale();
             tileScript.SetTileNumberAndColor(GirdTileNumber[r],TileColorNumberWise[r]);   
             tileScript.SetCurrentGridTile(gridTileMyParent);
-            //tileScript.MoveDown();
+            tileScript.MoveDown();
         }
 
         private GridTile GetNewTileStartingParen()

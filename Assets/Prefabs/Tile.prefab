@@ -225,7 +225,7 @@ MonoBehaviour:
   TileNumberText: {fileID: 1727472627502691497}
   SpriteRenderer: {fileID: 1727472628206567306}
   downSpeed: 0.1
-  rightSpeed: 0.2
+  rightSpeed: 0.05
   FatchedCardPosObj: {fileID: 0}
 --- !u!1 &1727472628359921476
 GameObject:
